@@ -1,0 +1,1 @@
+float ED_sqr(float *firstSubsequence, float *secondSubsequence, int n);
