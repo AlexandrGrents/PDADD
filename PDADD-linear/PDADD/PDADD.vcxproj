@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="ED.h" />
-    <ClInclude Include="forDebug.h" />
     <ClInclude Include="IOdata.h" />
     <ClInclude Include="preprocessing.h" />
     <ClInclude Include="refinement.h" />
@@ -29,7 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ED.cpp" />
-    <ClCompile Include="forDebug.cpp" />
     <ClCompile Include="IOdata.cpp" />
     <ClCompile Include="PDADD.cpp" />
     <ClCompile Include="preprocessing.cpp" />

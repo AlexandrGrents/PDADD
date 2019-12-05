@@ -33,9 +33,6 @@
     <ClInclude Include="ED.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="forDebug.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="selection.cpp">
@@ -54,9 +51,6 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="ED.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="forDebug.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

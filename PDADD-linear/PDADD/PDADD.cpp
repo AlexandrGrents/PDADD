@@ -1,3 +1,12 @@
+/*
+	јлександр √ренц (2019 г)
+	¬ерси€ параллельного алгоритма поиска диссонансов во временном р€де дл€ 1 узла с 1 €дром - головной модуль
+	ѕредназначен дл€ выполнени€ всех составных фаз алгоритма.
+
+	¬ходные данные: таблица input.csv, содержаща€ в себе временной р€д
+	¬ыходные данные: таблица output.csv, содержаща€ в себе индексы всех диапазонных диссонансов, 
+	таблица S.csv, содержаща€ в себе матрицу нормализованных подпоследовательностей временного р€да из исходной таблицы.
+*/
 #include <stdio.h>
 #include <cstdlib> 
 #include <iostream>
@@ -7,7 +16,6 @@
 #include "selection.h"
 #include "IOdata.h"
 #include "ED.h"
-#include "forDebug.h"
 
 int main()
 {
@@ -27,17 +35,12 @@ int main()
 
 	fill_S(t, S, n, N);
 	write_S("S.csv", N, n, S);
-	//showMatr(S, N, n);
 
 	int H;
 	int *Candidats = (int*)calloc(L,sizeof(int));
 	float **C = (float**)calloc(L, sizeof(float*));
 	
 	selection(S, C, r, N, n, L, p, &H, Candidats);
-
-	//showMatr(C, H, n);
-
-	
 
 	int D;
 	int *Discords = (int*)calloc(H, sizeof(int));

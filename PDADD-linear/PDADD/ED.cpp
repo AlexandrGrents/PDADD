@@ -1,5 +1,4 @@
 #include "ED.h"
-#include <cmath>
 float ED_sqr(float *firstSubsequence, float *secondSubsequence, int n)
 {
 	float ED_sqr = 0;

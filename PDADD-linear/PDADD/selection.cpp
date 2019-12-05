@@ -1,7 +1,4 @@
-#include <malloc.h>
-#include "ED.h"
-#include "config.h"
-#include <stdio.h>
+#include "selection.h"
 
 void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, int *Insert, int *Bottom,	int *Count)
 {
