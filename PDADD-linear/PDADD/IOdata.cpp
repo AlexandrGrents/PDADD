@@ -23,11 +23,12 @@ void write_S(const char *filename, int N, int n, float **S)
 
 	for (int i = 0; i < N; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = 0; j < n-1; j++)
 		{
 			fprintf(file, "%f;", S[i][j]);
 		}
-		fprintf(file, "\n");
+		fprintf(file, "%f", S[i][n-1]);
+		if (i!=(N-1))fprintf(file, "\n");
 	}
 
 	fclose(file);

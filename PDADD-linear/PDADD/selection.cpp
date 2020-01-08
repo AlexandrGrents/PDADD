@@ -1,5 +1,4 @@
 #include "selection.h"
-
 void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, int *Insert, int *Bottom,	int *Count)
 {
 	bool isCandidate;
@@ -14,21 +13,23 @@ void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, in
 			{
 				if (i - I[iam][j] >= n)
 				{
+					
 					if (ED_sqr(S[i], S[I[iam][j]], n) < r)
 					{
 						isCandidate = false;
-						//printf("--%d\n", I[iam][j]);
+						
 						I[iam][j] = NIL;
 						Insert[iam] = j;
 						Count[iam]--;
+						
 					}
+					
 				}
 				
 			}
 		}
 		if (isCandidate)
-		{
-			//printf("++%d\n", i);
+		{	
 			if (I[iam][Insert[iam]] == NIL)
 			{
 				I[iam][Insert[iam]] = i;
@@ -41,13 +42,8 @@ void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, in
 			Count[iam]++;
 		}
 	}
+
 	//конец параллельной области
-
-
-
-
-
-
 }
 
 void getCandidats(int **I, int *Candidats, int *Bottom, int *Count, int L, int p, int *H)
@@ -108,25 +104,12 @@ void selection(float **S, float **C, float r, int N, int n, int L, int p, int *H
 		
 	findCandidats(S, r, N, n, L, p, I, Insert, Bottom, Count);
 
-	printf("Bottom = %d, L = %d\n", Bottom[0], L);
-	for (int i = 0; i < Bottom[0]; i++)
-	{
-		printf("I[0][%d] = %d\n", i, I[0][i]);
-	}
-
 	getCandidats(I, Candidats, Bottom, Count, L, p, H);
-
-	printf("H = %d\n", *H);
-	for (int i = 0; i < *H; i++)
-	{
-		printf("Candidat[%d] = %d\n", i, Candidats[i]);
-	}
+	
 
 	C = (float**)realloc(C, (*H)*sizeof(float*));
 	for (int i = 0; i < (*H); i++) 
 	{ 
-		printf("-->%d\n", i);
-		if (i<*H)
 		C[i] = (float*)calloc(n, sizeof(float));
 	}
 
