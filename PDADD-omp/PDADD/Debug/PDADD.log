@@ -1,17 +1,4 @@
-﻿  debug.cpp
-c1xx : warning C4199: двухэтапный поиск имен не поддерживается для C++/CLI, C++/CX или OpenMP. Используйте /Zc:twoPhase-
-  ED.cpp
-c1xx : warning C4199: двухэтапный поиск имен не поддерживается для C++/CLI, C++/CX или OpenMP. Используйте /Zc:twoPhase-
-  IOdata.cpp
-c1xx : warning C4199: двухэтапный поиск имен не поддерживается для C++/CLI, C++/CX или OpenMP. Используйте /Zc:twoPhase-
-  PDADD.cpp
-c1xx : warning C4199: двухэтапный поиск имен не поддерживается для C++/CLI, C++/CX или OpenMP. Используйте /Zc:twoPhase-
-c:\users\alxgr\source\repos\pdadd\pdadd-omp\pdadd\config.h(18): warning C4305: инициализация: усечение из "double" в "float"
-c:\users\alxgr\source\repos\pdadd\pdadd-omp\pdadd\config.h(19): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-c:\users\alxgr\source\repos\pdadd\pdadd-omp\pdadd\config.h(19): warning C4244: инициализация: преобразование "float" в "const int", возможна потеря данных
-  preprocessing.cpp
-c1xx : warning C4199: двухэтапный поиск имен не поддерживается для C++/CLI, C++/CX или OpenMP. Используйте /Zc:twoPhase-
-  refinement.cpp
+﻿  refinement.cpp
 c1xx : warning C4199: двухэтапный поиск имен не поддерживается для C++/CLI, C++/CX или OpenMP. Используйте /Zc:twoPhase-
   selection.cpp
 c1xx : warning C4199: двухэтапный поиск имен не поддерживается для C++/CLI, C++/CX или OpenMP. Используйте /Zc:twoPhase-

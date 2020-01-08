@@ -24,6 +24,7 @@ void findDiscords(float **S, float **C, int * Candidats, float r, int N, int n, 
 			}
 		}
 	}
+
 	//конец параллельной области
 }
 void getDiscords(bool ** B, int *Candidats, int *Discords, int H, int *D, int p)
