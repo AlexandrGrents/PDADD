@@ -2,7 +2,7 @@
 void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, int *Insert, int *Bottom,	int *Count)
 {
 	bool isCandidate;
-	//далее параллельная область
+	//Г¤Г Г«ГҐГҐ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г Гї Г®ГЎГ«Г Г±ГІГј
 	int iam = 0;
 	for (int i = 0; i < N; i++)
 	{
@@ -43,7 +43,7 @@ void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, in
 		}
 	}
 
-	//конец параллельной области
+	//ГЄГ®Г­ГҐГ¶ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
 }
 
 void getCandidats(int **I, int *Candidats, int *Bottom, int *Count, int L, int p, int *H)
@@ -54,7 +54,7 @@ void getCandidats(int **I, int *Candidats, int *Bottom, int *Count, int L, int p
 	{
 		*H += Count[k];
 	}
-	//Candidats = (int*)realloc(Candidats, (*H)*sizeof(int));
+	Candidats = (int*)realloc(Candidats, (*H)*sizeof(int));
 	for (int k = 0; k < p; k++)
 	{
 		for (int j = 0; j < Bottom[k]; j++)
