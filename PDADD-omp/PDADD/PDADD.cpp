@@ -17,7 +17,7 @@
 #include "selection.h"
 #include "IOdata.h"
 #include "ED.h"
-
+#include <ctime>
 int main()
 {
 	//Старт работы программы
@@ -28,7 +28,7 @@ int main()
 	
 	//Считывание временного ряда
 	getTimeSeries(inputFileName, m, t);
-
+	printf("Read t\nTime: %d\n\n", clock());
 	//Выделение памяти для матрицы подпоследовательностей
 	float **S;
 	S = (float**)calloc(N, sizeof(float*));
@@ -40,7 +40,7 @@ int main()
 	//Заполнение матрицы подпоследовательностей (каждая подпоследовательность нормализуется), итоговая матрица выписывается в файл "S.csv"
 	fill_S(t, S, n, N);
 	write_S("S.csv", N, n, S);
-	
+	printf("Fill S\nTime: %d\n\n", clock());
 	//Выделение памяти для списка кандидатов и матрицы кандидатов
 	int H;
 	int *Candidats = (int*)calloc(L,sizeof(int));
@@ -49,8 +49,8 @@ int main()
 	//Фаза поиска
 	printf("Do selection phase\n");
 	selection(S, C, r, N, n, L, p, &H, Candidats);
-	printf("Find %d candidats\n\n", H);
-
+	printf("Find %d candidats\n", H);
+	printf("Time: %d\n\n", clock());
 	//Выделение памяти для списка диссонансов
 	int D;
 	int *Discords = (int*)calloc(H, sizeof(int));
@@ -59,11 +59,12 @@ int main()
 	printf("Do refinement phase\n");
 	refinement(S, C, Candidats, Discords, r, N, n, H, &D, p);
 	printf("Find %d discords\n", D);
-
+	printf("Time: %d\n\n", clock());
 	//Вывод результатов в файл
 	writeDiscords("output.txt", D, Discords);
 
 	//Окончание работы программы
+	printf("Finish\nTime: %d\n\n", clock());
 	system("pause");
 	return 0;
 }

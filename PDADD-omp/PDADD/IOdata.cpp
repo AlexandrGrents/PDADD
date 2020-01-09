@@ -1,4 +1,6 @@
-#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include "IOdata.h"
+
 void getTimeSeries(const char *filename, int m, float *t) 
 {
 	FILE *file = fopen(filename, "r");

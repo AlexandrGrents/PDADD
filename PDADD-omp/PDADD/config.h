@@ -14,7 +14,7 @@ const int n = 10;
 const float R = 1;
 
 const int N = m - n + 1;
-const int p = 8;
+const int p = 1;
 const float dq = 0.39;
 const int L = ceil(dq*N + 1);
 
