@@ -1,0 +1,111 @@
+
+Begin optimization report for: zNorm(float *, float **, int, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at preprocessing.cpp(8,2)
+<Peeled>
+LOOP END
+
+LOOP BEGIN at preprocessing.cpp(8,2)
+   remark #15388: vectorization support: reference t has aligned access   [ preprocessing.cpp(10,3) ]
+   remark #15388: vectorization support: reference t has aligned access   [ preprocessing.cpp(11,3) ]
+   remark #15388: vectorization support: reference t has aligned access   [ preprocessing.cpp(11,3) ]
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 16 
+   remark #15477: vector loop cost: 3.250 
+   remark #15478: estimated potential speedup: 4.370 
+   remark #15479: lightweight vector operations: 12 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at preprocessing.cpp(8,2)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at preprocessing.cpp(16,2)
+<Peeled>
+LOOP END
+
+LOOP BEGIN at preprocessing.cpp(16,2)
+   remark #15388: vectorization support: reference S has aligned access   [ preprocessing.cpp(18,3) ]
+   remark #15388: vectorization support: reference t has aligned access   [ preprocessing.cpp(18,3) ]
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 39 
+   remark #15477: vector loop cost: 9.250 
+   remark #15478: estimated potential speedup: 4.010 
+   remark #15479: lightweight vector operations: 7 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at preprocessing.cpp(16,2)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at preprocessing.cpp(16,2)
+<Remainder>
+   remark #15388: vectorization support: reference S has aligned access   [ preprocessing.cpp(18,3) ]
+   remark #15389: vectorization support: reference t has unaligned access   [ preprocessing.cpp(18,3) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at preprocessing.cpp(16,2)
+<Remainder>
+LOOP END
+===========================================================================
+
+Begin optimization report for: fill_S(float *, float **, int, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at preprocessing.cpp(23,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at preprocessing.cpp(8,2) inlined into preprocessing.cpp(25,3)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at preprocessing.cpp(8,2) inlined into preprocessing.cpp(25,3)
+      remark #15388: vectorization support: reference t has aligned access   [ preprocessing.cpp(10,3) ]
+      remark #15388: vectorization support: reference t has aligned access   [ preprocessing.cpp(11,3) ]
+      remark #15388: vectorization support: reference t has aligned access   [ preprocessing.cpp(11,3) ]
+      remark #15399: vectorization support: unroll factor set to 2
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 16 
+      remark #15477: vector loop cost: 3.250 
+      remark #15478: estimated potential speedup: 4.370 
+      remark #15479: lightweight vector operations: 12 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at preprocessing.cpp(8,2) inlined into preprocessing.cpp(25,3)
+   <Remainder>
+   LOOP END
+
+   LOOP BEGIN at preprocessing.cpp(16,2) inlined into preprocessing.cpp(25,3)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between S line 18 and S line 18
+      remark #15346: vector dependence: assumed ANTI dependence between S line 18 and S line 18
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at preprocessing.cpp(16,2) inlined into preprocessing.cpp(25,3)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================

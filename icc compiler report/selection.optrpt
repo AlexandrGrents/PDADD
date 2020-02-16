@@ -1,0 +1,230 @@
+
+Begin optimization report for: findCandidats(float **, float, int, int, int, int, int **, int *, int *, int *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at selection.cpp(15,3)
+   remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ selection.cpp(26,11) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Bottom line 19 and Count line 51
+   remark #15346: vector dependence: assumed FLOW dependence between Count line 51 and Bottom line 19
+
+   LOOP BEGIN at selection.cpp(19,4)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: getCandidats(int **, int *, int *, int *, int, int, int *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at selection.cpp(62,2)
+<Peeled, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at selection.cpp(62,2)
+<Multiversioned v1>
+   remark #25228: Loop multiversioned for Data Dependence
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ selection.cpp(64,4) ]
+   remark #15388: vectorization support: reference Count has aligned access   [ selection.cpp(64,4) ]
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 4 
+   remark #15477: vector loop cost: 1.250 
+   remark #15478: estimated potential speedup: 2.810 
+   remark #15479: lightweight vector operations: 5 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at selection.cpp(62,2)
+<Remainder, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at selection.cpp(62,2)
+<Multiversioned v2>
+   remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at selection.cpp(62,2)
+<Remainder, Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at selection.cpp(67,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Bottom line 69 and Candidats line 73
+   remark #15346: vector dependence: assumed FLOW dependence between Candidats line 73 and Bottom line 69
+
+   LOOP BEGIN at selection.cpp(69,3)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: get_C(float **, float **, int *, int *, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at selection.cpp(86,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between C line 90 and C line 90
+   remark #15346: vector dependence: assumed OUTPUT dependence between C line 90 and C line 90
+
+   LOOP BEGIN at selection.cpp(88,3)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between C line 90 and S line 90
+      remark #15346: vector dependence: assumed ANTI dependence between S line 90 and C line 90
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at selection.cpp(88,3)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: selection(float **, float **, float, int, int, int, int, int *, int *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at selection.cpp(100,2)
+<Peeled>
+LOOP END
+
+LOOP BEGIN at selection.cpp(100,2)
+   remark #15389: vectorization support: reference Insert has unaligned access   [ selection.cpp(102,3) ]
+   remark #15388: vectorization support: reference Bottom has aligned access   [ selection.cpp(103,3) ]
+   remark #15388: vectorization support: reference Count has aligned access   [ selection.cpp(104,3) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15451: unmasked unaligned unit stride stores: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 3.470 
+   remark #15479: lightweight vector operations: 8 
+   remark #15481: heavy-overhead vector operations: 1 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at selection.cpp(100,2)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at selection.cpp(100,2)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at selection.cpp(107,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at selection.cpp(110,3)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at selection.cpp(110,3)
+      remark #15388: vectorization support: reference I has aligned access   [ selection.cpp(112,4) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 7 
+      remark #15477: vector loop cost: 0.750 
+      remark #15478: estimated potential speedup: 8.070 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at selection.cpp(110,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at selection.cpp(62,2) inlined into selection.cpp(118,2)
+<Peeled>
+LOOP END
+
+LOOP BEGIN at selection.cpp(62,2) inlined into selection.cpp(118,2)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ selection.cpp(64,4) ]
+   remark #15388: vectorization support: reference Count has aligned access   [ selection.cpp(64,4) ]
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 4 
+   remark #15477: vector loop cost: 1.250 
+   remark #15478: estimated potential speedup: 2.810 
+   remark #15479: lightweight vector operations: 5 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at selection.cpp(62,2) inlined into selection.cpp(118,2)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at selection.cpp(67,2) inlined into selection.cpp(118,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between Candidats line 73 and Candidats line 73
+   remark #15346: vector dependence: assumed OUTPUT dependence between Candidats line 73 and Candidats line 73
+
+   LOOP BEGIN at selection.cpp(69,3) inlined into selection.cpp(118,2)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between i line 75 and i line 73
+      remark #15346: vector dependence: assumed ANTI dependence between i line 73 and i line 75
+      remark #15346: vector dependence: assumed ANTI dependence between i line 73 and i line 75
+      remark #15346: vector dependence: assumed FLOW dependence between i line 75 and i line 73
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at selection.cpp(69,3) inlined into selection.cpp(118,2)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at selection.cpp(123,2)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at selection.cpp(86,2) inlined into selection.cpp(128,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between C line 90 and C line 90
+   remark #15346: vector dependence: assumed OUTPUT dependence between C line 90 and C line 90
+
+   LOOP BEGIN at selection.cpp(88,3) inlined into selection.cpp(128,2)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between C line 90 and S line 90
+      remark #15346: vector dependence: assumed ANTI dependence between S line 90 and C line 90
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at selection.cpp(88,3) inlined into selection.cpp(128,2)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at selection.cpp(15,3) inlined into selection.cpp(116,2)
+   remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ selection.cpp(26,11) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Bottom line 19 and Bottom line 49
+   remark #15346: vector dependence: assumed FLOW dependence between Bottom line 49 and Bottom line 19
+
+   LOOP BEGIN at selection.cpp(19,4) inlined into selection.cpp(116,2)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+===========================================================================
