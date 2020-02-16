@@ -1,11 +1,11 @@
 /*
-	Александр Гренц (2019 г)
-	Версия параллельного алгоритма поиска диссонансов во временном ряде для 1 узла с 1 ядром - головной модуль
-	Предназначен для выполнения всех составных фаз алгоритма.
+	ГЂГ«ГҐГЄГ±Г Г­Г¤Г° ГѓГ°ГҐГ­Г¶ (2019 ГЈ)
+	Г‚ГҐГ°Г±ГЁГї ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®ГЈГ® Г Г«ГЈГ®Г°ГЁГІГ¬Г  ГЇГ®ГЁГ±ГЄГ  Г¤ГЁГ±Г±Г®Г­Г Г­Г±Г®Гў ГўГ® ГўГ°ГҐГ¬ГҐГ­Г­Г®Г¬ Г°ГїГ¤ГҐ Г¤Г«Гї 1 ГіГ§Г«Г  Г± 1 ГїГ¤Г°Г®Г¬ - ГЈГ®Г«Г®ГўГ­Г®Г© Г¬Г®Г¤ГіГ«Гј
+	ГЏГ°ГҐГ¤Г­Г Г§Г­Г Г·ГҐГ­ Г¤Г«Гї ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГї ГўГ±ГҐГµ Г±Г®Г±ГІГ ГўГ­Г»Гµ ГґГ Г§ Г Г«ГЈГ®Г°ГЁГІГ¬Г .
 
-	Входные данные: таблица input.csv, содержащая в себе временной ряд
-	Выходные данные: таблица output.csv, содержащая в себе индексы всех диапазонных диссонансов, 
-	таблица S.csv, содержащая в себе матрицу нормализованных подпоследовательностей временного ряда из исходной таблицы.
+	Г‚ГµГ®Г¤Г­Г»ГҐ Г¤Г Г­Г­Г»ГҐ: ГІГ ГЎГ«ГЁГ¶Г  input.csv, Г±Г®Г¤ГҐГ°Г¦Г Г№Г Гї Гў Г±ГҐГЎГҐ ГўГ°ГҐГ¬ГҐГ­Г­Г®Г© Г°ГїГ¤
+	Г‚Г»ГµГ®Г¤Г­Г»ГҐ Г¤Г Г­Г­Г»ГҐ: ГІГ ГЎГ«ГЁГ¶Г  output.csv, Г±Г®Г¤ГҐГ°Г¦Г Г№Г Гї Гў Г±ГҐГЎГҐ ГЁГ­Г¤ГҐГЄГ±Г» ГўГ±ГҐГµ Г¤ГЁГ ГЇГ Г§Г®Г­Г­Г»Гµ Г¤ГЁГ±Г±Г®Г­Г Г­Г±Г®Гў, 
+	ГІГ ГЎГ«ГЁГ¶Г  S.csv, Г±Г®Г¤ГҐГ°Г¦Г Г№Г Гї Гў Г±ГҐГЎГҐ Г¬Г ГІГ°ГЁГ¶Гі Г­Г®Г°Г¬Г Г«ГЁГ§Г®ГўГ Г­Г­Г»Гµ ГЇГ®Г¤ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГҐГ© ГўГ°ГҐГ¬ГҐГ­Г­Г®ГЈГ® Г°ГїГ¤Г  ГЁГ§ ГЁГ±ГµГ®Г¤Г­Г®Г© ГІГ ГЎГ«ГЁГ¶Г».
 */
 #include "mpi.h"
 #include <stdio.h>
@@ -23,21 +23,19 @@
 int main(int argc, char** argv)
 {
 	
-	const char inputFileName[] = "input2.csv";
+	char inputFileName[] = "input0000.csv";
 	MPI_Status stat;
 
-	int m = 1000;
-	int n = 10;
-	float R = 1;
+	int m = 100000;
+	int n = 128;
+	float R = 0.08*n;
 	int p = 4;
-
 	int N;
-	float dq = 1;
+	float dq = 0.6;
 	
 
-
 	const float r = R * R;
-	//Старт работы программы
+	//Г‘ГІГ Г°ГІ Г°Г ГЎГ®ГІГ» ГЇГ°Г®ГЈГ°Г Г¬Г¬Г»
 
 	printf("Start\n");
 
@@ -46,83 +44,40 @@ int main(int argc, char** argv)
 	MPI_Init(&argc, &argv);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-	//Выделение памяти для временного ряда
+	//Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ ГЇГ Г¬ГїГІГЁ Г¤Г«Гї ГўГ°ГҐГ¬ГҐГ­Г­Г®ГЈГ® Г°ГїГ¤Г 
 	float* t;
 	int m_local;
-	//Считывание временного ряда и передача его на узлы
-	if (rank == 0)
-	{
-		int m_global = 0;
-		FILE* file = fopen(inputFileName, "r");
-		if (size != 1)
-		{
-			
-			m_global = (m - n + 1) / (size) + (n-1);
-			m_local  = (m - n + 1) % (size) + m_global;
-
-
-			for (int k = 1; k < size; k++)
-			{
-				MPI_Send(&m_global, 1, MPI_INT, k, 0, MPI_COMM_WORLD);
-			}
-
-			t = (float*)calloc(m_local, sizeof(float));
-
-			
-
-			for (int k = 1; k < size; k++)
-			{
-				//считываем отрезок временного ряда для того, чтобы передать его на узел k
-				for (int i = 0; i < m_global; i++)
-				{
-					if (k != 1 && i < n-1)
-					{
-						t[i] = t[m_global - n-1 + i];
-					}
-					else
-					{
-						fscanf(file, "%f", &t[i]);
-					}
-				}
-				//передаём отрезок на узел k
-				MPI_Send(t, m_global, MPI_FLOAT, k, 1, MPI_COMM_WORLD);
-			}
-			
-		}
-		else
-		{
-			m_local = m;
-			t = (float*)calloc(m_local, sizeof(float));
-		}
-		for (int i = 0; i < m_local; i++)
-		{
-			if (i < n - 1 && m_global != 0)
-			{
-				t[i] = t[m_global - n + 1 + i];
-			}
-			else
-			{
-				fscanf(file, "%f", &t[i]);
-			}
-			
-		}
-	}
-	else
-	{
-		MPI_Recv(&m_local, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &stat);
-		t = (float*)calloc(m_local, sizeof(float));
-		MPI_Recv(t, m_local, MPI_FLOAT, 0, 1, MPI_COMM_WORLD, &stat);
+	//Г‘Г·ГЁГІГ»ГўГ Г­ГЁГҐ ГўГ°ГҐГ¬ГҐГ­Г­Г®ГЈГ® Г°ГїГ¤Г  ГЁ ГЇГҐГ°ГҐГ¤Г Г·Г  ГҐГЈГ® Г­Г  ГіГ§Г«Г»
 		
+		
+	if (rank == 0) m_local = (m - n + 1) / (size)+(n - 1) + (m - n + 1) % (size);
+	else m_local = (m - n + 1) / (size)+(n - 1);
+		
+	inputFileName[5] = ('0' + rank / 1000);
+	inputFileName[6] = ('0' + (rank / 100) % 10);
+	inputFileName[7] = ('0' + (rank / 10) % 10);
+	inputFileName[8] = ('0' + rank % 10);
+
+	FILE* file = fopen(inputFileName, "r");
+	
+	t = (float*)calloc(m_local, sizeof(float));
+
+	for (int i = 0; i < m_local; i++)
+	{
+		fscanf(file, "%f", &t[i]);
 	}
-	//printf("---------------\n[%d]\nm_local = %d\n", rank,m_local);
-	//for (int i = 0; i < m_local; i++)printf("%f ", t[i]); printf("\n");
+
+	fclose(file);
+
+
+
 	N = m_local - n + 1;
 	int L = (int)(dq * N + 1);
 	
 	
 	
 	
-	//Выделение памяти для матрицы подпоследовательностей
+	//Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ ГЇГ Г¬ГїГІГЁ Г¤Г«Гї Г¬Г ГІГ°ГЁГ¶Г» ГЇГ®Г¤ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГҐГ©
 	float **S;
 	S = (float**)calloc(N, sizeof(float*));
 	for (int i = 0; i < N; i++)
@@ -130,16 +85,16 @@ int main(int argc, char** argv)
 		S[i] = (float*)calloc(n, sizeof(float));
 	}
 
-	//Заполнение матрицы подпоследовательностей (каждая подпоследовательность нормализуется)
+	//Г‡Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ Г¬Г ГІГ°ГЁГ¶Г» ГЇГ®Г¤ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГҐГ© (ГЄГ Г¦Г¤Г Гї ГЇГ®Г¤ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГј Г­Г®Г°Г¬Г Г«ГЁГ§ГіГҐГІГ±Гї)
 	fill_S(t, S, n, N);
 	
 	//print_matrix(S, N, n);
 
-	//Выделение памяти для списка кандидатов и матрицы кандидатов
+	//Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ ГЇГ Г¬ГїГІГЁ Г¤Г«Гї Г±ГЇГЁГ±ГЄГ  ГЄГ Г­Г¤ГЁГ¤Г ГІГ®Гў ГЁ Г¬Г ГІГ°ГЁГ¶Г» ГЄГ Г­Г¤ГЁГ¤Г ГІГ®Гў
 	
 	
 	
-	//Фаза поиска
+	//Г”Г Г§Г  ГЇГ®ГЁГ±ГЄГ 
 	
 
 	
@@ -202,7 +157,7 @@ int main(int argc, char** argv)
 	}
 
 	int* Candidats = (int*)calloc(sum, sizeof(int));
-	float* C = (float*)calloc(sum*n, sizeof(float));
+	float* C = (float*)calloc((sum*n), sizeof(float));
 
 	int i = pre;
 	for (int k = 0; k < p; k++)
@@ -285,7 +240,7 @@ int main(int argc, char** argv)
 
 
 
-	//Выделение памяти для списка диссонансов
+	//Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ ГЇГ Г¬ГїГІГЁ Г¤Г«Гї Г±ГЇГЁГ±ГЄГ  Г¤ГЁГ±Г±Г®Г­Г Г­Г±Г®Гў
 	int D;
 	int *Discords = (int*)calloc(H, sizeof(int));
 
@@ -293,7 +248,7 @@ int main(int argc, char** argv)
 	int sum_H = sum;
 
 
-	//Фаза уточнения
+	//Г”Г Г§Г  ГіГІГ®Г·Г­ГҐГ­ГЁГї
 	refinement(S, C, Candidats, Discords, r, N, n, sum_H, &D, p,add);
 
 
@@ -359,13 +314,13 @@ int main(int argc, char** argv)
 		}
 	}
 
-	//Вывод результатов на экран и в файл
+	//Г‚Г»ГўГ®Г¤ Г°ГҐГ§ГіГ«ГјГІГ ГІГ®Гў Г­Г  ГЅГЄГ°Г Г­ ГЁ Гў ГґГ Г©Г«
 	if (rank == 0)
 	{
 		printf("Find %d candidats\n", sum_H);
 		printf("Find %d discords\n", D);
 		writeDiscords("output.txt", D, Discords);
-		//Окончание работы программы
+		//ГЋГЄГ®Г­Г·Г Г­ГЁГҐ Г°Г ГЎГ®ГІГ» ГЇГ°Г®ГЈГ°Г Г¬Г¬Г»
 		
 	}
 
