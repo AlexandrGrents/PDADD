@@ -12,7 +12,7 @@
 3. [Алгоритм для нескольких узлов и 1 ядра](https://github.com/AlexandrGrents/PDADD/tree/master/PDADD-mpi) Реализован, протестирован✅<br>
 4. [Алгоритм для нескольких узлов и нескольких ядер](https://github.com/AlexandrGrents/PDADD/tree/master/PDADD-mpi%2Bomp) Реализован, протестирован✅<br>
 
-
+#### [Отчеты компилятора](https://github.com/AlexandrGrents/PDADD/tree/master/icc%20compiler%20report)
 
 #### Результаты вычислительных экспериментов*:
 ***в проекте***
