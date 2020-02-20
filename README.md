@@ -14,9 +14,11 @@
 
 #### [Отчеты компилятора](https://github.com/AlexandrGrents/PDADD/tree/master/icc%20compiler%20report)
 
-#### Результаты вычислительных экспериментов*:
+#### Результаты вычислительных экспериментов[*](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1):
 
 *** доступно по ссылке ниже ***
 
-[Данные для экспериментов](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1) <br>
-[Подробные результаты экспериментов](https://docs.google.com/spreadsheets/d/1dJWZMRllznElxyI6ZTrmGiSUGYtYVOTOYgcRfZT-ucE/edit#gid=1566595512)
+
+[Подробные результаты экспериментов](https://docs.google.com/spreadsheets/d/1dJWZMRllznElxyI6ZTrmGiSUGYtYVOTOYgcRfZT-ucE/edit#gid=1566595512) <br>
+
+[*Данные для экспериментов](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1)
