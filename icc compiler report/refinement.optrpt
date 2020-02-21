@@ -48,43 +48,19 @@ LOOP BEGIN at refinement.cpp(41,2)
 LOOP END
 ===========================================================================
 
-Begin optimization report for: refinement(float **, float *, int *, int *, float, int, int, int, int *, int, int)
+Begin optimization report for: refinement(float **, bool **, float *, int *, int *, float, int, int, int, int *, int, int)
 
     Report from: Loop nest & Vector optimizations [loop, vec]
 
 
-LOOP BEGIN at refinement.cpp(59,2)
-   remark #15542: loop was not vectorized: inner loop was already vectorized
-
-   LOOP BEGIN at refinement.cpp(62,3)
-   <Peeled>
-   LOOP END
-
-   LOOP BEGIN at refinement.cpp(62,3)
-      remark #15388: vectorization support: reference B has aligned access   [ refinement.cpp(64,4) ]
-      remark #15300: LOOP WAS VECTORIZED
-      remark #15449: unmasked aligned unit stride stores: 1 
-      remark #15475: --- begin vector loop cost summary ---
-      remark #15476: scalar loop cost: 6 
-      remark #15477: vector loop cost: 0.180 
-      remark #15478: estimated potential speedup: 7.860 
-      remark #15479: lightweight vector operations: 3 
-      remark #15488: --- end vector loop cost summary ---
-   LOOP END
-
-   LOOP BEGIN at refinement.cpp(62,3)
-   <Remainder>
-   LOOP END
-LOOP END
-
-LOOP BEGIN at refinement.cpp(41,2) inlined into refinement.cpp(69,2)
+LOOP BEGIN at refinement.cpp(41,2) inlined into refinement.cpp(61,2)
    remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
    remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation: ( 1 2 ) --> ( 2 1 ) 
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between Discords line 50 and D line 51
-   remark #15346: vector dependence: assumed OUTPUT dependence between D line 51 and Discords line 50
+   remark #15346: vector dependence: assumed ANTI dependence between B line 46 and D line 51
+   remark #15346: vector dependence: assumed FLOW dependence between D line 51 and B line 46
 
-   LOOP BEGIN at refinement.cpp(44,3) inlined into refinement.cpp(69,2)
+   LOOP BEGIN at refinement.cpp(44,3) inlined into refinement.cpp(61,2)
       remark #15344: loop was not vectorized: vector dependence prevents vectorization
       remark #15346: vector dependence: assumed FLOW dependence between isDiscord line 46 and isDiscord line 46
       remark #15346: vector dependence: assumed ANTI dependence between isDiscord line 46 and isDiscord line 46
@@ -92,24 +68,24 @@ LOOP BEGIN at refinement.cpp(41,2) inlined into refinement.cpp(69,2)
       remark #25439: unrolled with remainder by 2  
    LOOP END
 
-   LOOP BEGIN at refinement.cpp(44,3) inlined into refinement.cpp(69,2)
+   LOOP BEGIN at refinement.cpp(44,3) inlined into refinement.cpp(61,2)
    <Remainder>
    LOOP END
 LOOP END
 
-LOOP BEGIN at refinement.cpp(17,3) inlined into refinement.cpp(67,2)
+LOOP BEGIN at refinement.cpp(17,3) inlined into refinement.cpp(59,2)
    remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ refinement.cpp(27,19) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
    remark #15346: vector dependence: assumed FLOW dependence between  line 27 and B line 27
    remark #15346: vector dependence: assumed ANTI dependence between B line 27 and  line 27
 
-   LOOP BEGIN at refinement.cpp(19,4) inlined into refinement.cpp(67,2)
+   LOOP BEGIN at refinement.cpp(19,4) inlined into refinement.cpp(59,2)
       remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ refinement.cpp(27,19) ]
       remark #15344: loop was not vectorized: vector dependence prevents vectorization
       remark #25439: unrolled with remainder by 2  
    LOOP END
 
-   LOOP BEGIN at refinement.cpp(19,4) inlined into refinement.cpp(67,2)
+   LOOP BEGIN at refinement.cpp(19,4) inlined into refinement.cpp(59,2)
    <Remainder>
    LOOP END
 LOOP END
