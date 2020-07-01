@@ -1,0 +1,41 @@
+
+Begin optimization report for: print_matrix(float **, int, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at debug.cpp(7,2)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ debug.cpp(11,4) ]
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ debug.cpp(13,3) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between  line 11 and  line 13
+   remark #15346: vector dependence: assumed OUTPUT dependence between  line 13 and  line 11
+
+   LOOP BEGIN at debug.cpp(9,3)
+      remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ debug.cpp(11,4) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: print_array(float *, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at debug.cpp(19,2)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ debug.cpp(21,3) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+===========================================================================
+
+Begin optimization report for: print_two_array(float *, float *, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at debug.cpp(28,2)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ debug.cpp(30,3) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+===========================================================================

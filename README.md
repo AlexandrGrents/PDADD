@@ -1,24 +1,29 @@
 # PDADD (Parallel disk aware discord discovery)
 
 #### Описание
-Алгоритм поиска диссонансов во временном ряде, параллельный для вычислительных кластеров с узлами, имеющими многоядерные ускорители<br>
-[Модульная структура](https://github.com/AlexandrGrents/PDADD/blob/master/images/%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0.jpg)<br>
-[Файловая структура](https://github.com/AlexandrGrents/PDADD/blob/master/images/%D0%A4%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0.jpg)<br>
-[Структуры данных](https://github.com/AlexandrGrents/PDADD/blob/master/images/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.jpg)<br>
+Программная система для поиска аномалий во временном ряде на высокопроизводительном вычислительном кластере с многоядерными ускорителями<br>
+- [Модульная структура](/docs/images/modules.jpg)
+- [Файловая структура](/docs/images/files.jpg)
+- [Структуры данных](/docs/images/data.jpg)
 
 Реализация состоит из четырёх частей:
-1. [Алгоритм для 1 узла и 1 ядра](https://github.com/AlexandrGrents/PDADD/tree/master/PDADD-linear) Реализован, протестирован✅<br>
-2. [Алгоритм для 1 узла и нескольких ядер](https://github.com/AlexandrGrents/PDADD/tree/master/PDADD-omp) Реализован, протестирован✅<br>
-3. [Алгоритм для нескольких узлов и 1 ядра](https://github.com/AlexandrGrents/PDADD/tree/master/PDADD-mpi) Реализован, протестирован✅<br>
-4. [Алгоритм для нескольких узлов и нескольких ядер](https://github.com/AlexandrGrents/PDADD/tree/master/PDADD-mpi%2Bomp) Реализован, протестирован✅<br>
+1. [Алгоритм для 1 узла и 1 ядра](/PDADD-linear) Реализован, протестирован✅<br>
+2. [Алгоритм для 1 узла и нескольких ядер](/PDADD-omp) Реализован, протестирован✅<br>
+3. [Алгоритм для нескольких узлов и 1 ядра](/PDADD-mpi) Реализован, протестирован✅<br>
+4. [Алгоритм для нескольких узлов и нескольких ядер](/PDADD-mpi+omp) Реализован, протестирован✅<br>
+
+Дополнительно приведены исполняемые коды для экспериментов на [суперкомпьютере "Торнадо ЮУрГУ"](https://supercomputer.susu.ru/computers/tornado/):
+1. [Алгоритм для нескольких узлов и нескольких ядер с обычным вычислением евклидова расстония](/PDADD-tornado) Реализован, протестирован✅<br>
+2. [Алгоритм для нескольких узлов и нескольких ядер с норомализованным вычислением евклидова расстония](/PDADD-tornado-ED_norm) Реализован, протестирован✅<br>
+
 
 #### [Отчеты компилятора](https://github.com/AlexandrGrents/PDADD/tree/master/icc%20compiler%20report)
 
-#### Результаты вычислительных экспериментов[*](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1):
+#### Результаты вычислительных экспериментов[* ](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1):
 
-***доступно по ссылке ниже***
+<hr>
 
 
-[Подробные результаты экспериментов](https://docs.google.com/spreadsheets/d/1dJWZMRllznElxyI6ZTrmGiSUGYtYVOTOYgcRfZT-ucE/edit#gid=1566595512) <br>
+[Подробные результаты экспериментов](https://docs.google.com/spreadsheets/d/1dJWZMRllznElxyI6ZTrmGiSUGYtYVOTOYgcRfZT-ucE/edit#gid=1566595512)
 
-[*Данные для экспериментов](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1)
+[Данные для экспериментов](https://yadi.sk/d/qCgEygEKZ74qhA)

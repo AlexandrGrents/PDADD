@@ -1,7 +1,0 @@
-Start
-Create thread #0
-Create thread #0
-slurmd[node071]: error: *** JOB 259840 CANCELLED AT 2020-02-14T11:20:12 ***
-srun: Job step aborted: Waiting up to 2 seconds for job step to finish.
-slurmd[node071]: error: *** STEP 259840.0 CANCELLED AT 2020-02-14T11:20:12 ***
-/bin/rm: cannot remove `/tmp/srun___logue': No such file or directory

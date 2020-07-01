@@ -1,0 +1,42 @@
+
+Begin optimization report for: getTimeSeries(const char *, int, float *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at IOdata.cpp(5,2)
+   remark #15527: loop was not vectorized: function call to fscanf(FILE *, const char *, ...) cannot be vectorized   [ IOdata.cpp(7,3) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: writeDiscords(const char *, int, int *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at IOdata.cpp(14,2)
+   remark #15527: loop was not vectorized: function call to fprintf(FILE *, const char *, ...) cannot be vectorized   [ IOdata.cpp(16,3) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: write_S(const char *, int, int, float **)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at IOdata.cpp(24,2)
+   remark #15382: vectorization support: call to function fprintf(FILE *, const char *, ...) cannot be vectorized   [ IOdata.cpp(28,4) ]
+   remark #15382: vectorization support: call to function fprintf(FILE *, const char *, ...) cannot be vectorized   [ IOdata.cpp(30,3) ]
+   remark #15382: vectorization support: call to function fprintf(FILE *, const char *, ...) cannot be vectorized   [ IOdata.cpp(31,16) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between  line 28 and  line 31
+   remark #15346: vector dependence: assumed OUTPUT dependence between  line 31 and  line 28
+
+   LOOP BEGIN at IOdata.cpp(26,3)
+      remark #15382: vectorization support: call to function fprintf(FILE *, const char *, ...) cannot be vectorized   [ IOdata.cpp(28,4) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between  line 28 and S line 28
+      remark #15346: vector dependence: assumed ANTI dependence between S line 28 and  line 28
+   LOOP END
+LOOP END
+===========================================================================
