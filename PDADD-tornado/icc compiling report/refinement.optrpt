@@ -1,0 +1,146 @@
+
+Begin optimization report for: findDiscords(float **, float *, int *, float, int, int, int, int, bool **, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at refinement.cpp(13,3)
+   remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ refinement.cpp(27,20) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Candidats line 19 and  line 27
+   remark #15346: vector dependence: assumed FLOW dependence between  line 27 and Candidats line 19
+
+   LOOP BEGIN at refinement.cpp(15,4)
+      remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ refinement.cpp(27,20) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between Candidats line 19 and  line 27
+      remark #15346: vector dependence: assumed FLOW dependence between  line 27 and Candidats line 19
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: findDiscords_norm(float *, float **, float *, float *, int *, float, int, int, int, int, bool **, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at refinement.cpp(49,3)
+   remark #15382: vectorization support: call to function ED_norm(float *, float *, int, float, float, float, float) cannot be vectorized   [ refinement.cpp(63,20) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Candidats line 55 and  line 63
+   remark #15346: vector dependence: assumed FLOW dependence between  line 63 and Candidats line 55
+
+   LOOP BEGIN at refinement.cpp(51,4)
+      remark #15382: vectorization support: call to function ED_norm(float *, float *, int, float, float, float, float) cannot be vectorized   [ refinement.cpp(63,20) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between Candidats line 55 and  line 63
+      remark #15346: vector dependence: assumed FLOW dependence between  line 63 and Candidats line 55
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: getDiscords(bool **, int *, int *, int, int *, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at refinement.cpp(80,2)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation: ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between B line 85 and D line 90
+   remark #15346: vector dependence: assumed FLOW dependence between D line 90 and B line 85
+
+   LOOP BEGIN at refinement.cpp(83,3)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between isDiscord line 85 and isDiscord line 85
+      remark #15346: vector dependence: assumed ANTI dependence between isDiscord line 85 and isDiscord line 85
+      remark #15346: vector dependence: assumed ANTI dependence between isDiscord line 85 and isDiscord line 85
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at refinement.cpp(83,3)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: refinement(float **, bool **, float *, int *, int *, float, int, int, int, int *, int, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at refinement.cpp(80,2) inlined into refinement.cpp(100,2)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation: ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between B line 85 and D line 90
+   remark #15346: vector dependence: assumed FLOW dependence between D line 90 and B line 85
+
+   LOOP BEGIN at refinement.cpp(83,3) inlined into refinement.cpp(100,2)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between isDiscord line 85 and isDiscord line 85
+      remark #15346: vector dependence: assumed ANTI dependence between isDiscord line 85 and isDiscord line 85
+      remark #15346: vector dependence: assumed ANTI dependence between isDiscord line 85 and isDiscord line 85
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at refinement.cpp(83,3) inlined into refinement.cpp(100,2)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at refinement.cpp(13,3) inlined into refinement.cpp(98,2)
+   remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ refinement.cpp(27,20) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Candidats line 19 and B line 27
+   remark #15346: vector dependence: assumed FLOW dependence between B line 27 and Candidats line 19
+
+   LOOP BEGIN at refinement.cpp(15,4) inlined into refinement.cpp(98,2)
+      remark #15382: vectorization support: call to function ED_sqr(float *, float *, int) cannot be vectorized   [ refinement.cpp(27,20) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between Candidats line 19 and B line 27
+      remark #15346: vector dependence: assumed FLOW dependence between B line 27 and Candidats line 19
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: refinement_norm(float *, float **, float *, bool **, float *, int *, int *, float, int, int, int, int *, int, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at refinement.cpp(80,2) inlined into refinement.cpp(107,2)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation: ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between B line 85 and D line 90
+   remark #15346: vector dependence: assumed FLOW dependence between D line 90 and B line 85
+
+   LOOP BEGIN at refinement.cpp(83,3) inlined into refinement.cpp(107,2)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between isDiscord line 85 and isDiscord line 85
+      remark #15346: vector dependence: assumed ANTI dependence between isDiscord line 85 and isDiscord line 85
+      remark #15346: vector dependence: assumed ANTI dependence between isDiscord line 85 and isDiscord line 85
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at refinement.cpp(83,3) inlined into refinement.cpp(107,2)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at refinement.cpp(49,3) inlined into refinement.cpp(106,2)
+   remark #15382: vectorization support: call to function ED_norm(float *, float *, int, float, float, float, float) cannot be vectorized   [ refinement.cpp(63,20) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Candidats line 55 and B line 63
+   remark #15346: vector dependence: assumed FLOW dependence between B line 63 and Candidats line 55
+
+   LOOP BEGIN at refinement.cpp(51,4) inlined into refinement.cpp(106,2)
+      remark #15382: vectorization support: call to function ED_norm(float *, float *, int, float, float, float, float) cannot be vectorized   [ refinement.cpp(63,20) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between Candidats line 55 and B line 63
+      remark #15346: vector dependence: assumed FLOW dependence between B line 63 and Candidats line 55
+   LOOP END
+LOOP END
+===========================================================================

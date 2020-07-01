@@ -1,0 +1,346 @@
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at PDADD.cpp(74,2)
+   remark #15527: loop was not vectorized: function call to fscanf(FILE *, const char *, ...) cannot be vectorized   [ PDADD.cpp(76,3) ]
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(119,2)
+   remark #15388: vectorization support: reference Insert has aligned access   [ PDADD.cpp(121,3) ]
+   remark #15388: vectorization support: reference Bottom has aligned access   [ PDADD.cpp(122,3) ]
+   remark #15388: vectorization support: reference Count has aligned access   [ PDADD.cpp(123,3) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 3 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 2.250 
+   remark #15478: estimated potential speedup: 4.880 
+   remark #15479: lightweight vector operations: 9 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(119,2)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(127,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at PDADD.cpp(130,3)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(130,3)
+      remark #15388: vectorization support: reference I has aligned access   [ PDADD.cpp(132,4) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 7 
+      remark #15477: vector loop cost: 0.750 
+      remark #15478: estimated potential speedup: 8.070 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(130,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(160,3)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(177,2)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ PDADD.cpp(179,3) ]
+   remark #15388: vectorization support: reference Count has aligned access   [ PDADD.cpp(179,3) ]
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 4 
+   remark #15477: vector loop cost: 1.250 
+   remark #15478: estimated potential speedup: 2.870 
+   remark #15479: lightweight vector operations: 5 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(177,2)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(193,2)
+   remark #15382: vectorization support: call to function _mm_malloc(unsigned long, unsigned long) cannot be vectorized   [ PDADD.cpp(195,19) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between B_l line 195 and B_l line 198
+   remark #15346: vector dependence: assumed OUTPUT dependence between B_l line 198 and B_l line 195
+
+   LOOP BEGIN at PDADD.cpp(196,3)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(202,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between Candidats_l line 208 and Candidats_l line 208
+   remark #15346: vector dependence: assumed OUTPUT dependence between Candidats_l line 208 and Candidats_l line 208
+
+   LOOP BEGIN at PDADD.cpp(204,3)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between i line 209 and i line 208
+      remark #15346: vector dependence: assumed ANTI dependence between i line 208 and i line 209
+      remark #15346: vector dependence: assumed ANTI dependence between i line 208 and i line 209
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(204,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(214,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at PDADD.cpp(216,3)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(216,3)
+      remark #15388: vectorization support: reference C_l has aligned access   [ PDADD.cpp(218,4) ]
+      remark #15389: vectorization support: reference t has unaligned access   [ PDADD.cpp(218,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15450: unmasked unaligned unit stride loads: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 13 
+      remark #15477: vector loop cost: 1.000 
+      remark #15478: estimated potential speedup: 10.800 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(216,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(225,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between u_and_q line 227 and u_and_q_l line 228
+   remark #15346: vector dependence: assumed FLOW dependence between u_and_q_l line 228 and u_and_q line 227
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(225,2)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(251,2)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at PDADD.cpp(255,4)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(268,2)
+<Distributed chunk1>
+   remark #25426: Loop Distributed (2 way) 
+   remark #15388: vectorization support: reference sizes has aligned access   [ PDADD.cpp(270,3) ]
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15301: PARTIAL LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 4 
+   remark #15477: vector loop cost: 1.250 
+   remark #15478: estimated potential speedup: 2.870 
+   remark #15479: lightweight vector operations: 5 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(268,2)
+<Remainder, Distributed chunk1>
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(268,2)
+<Distributed chunk2, Predicate Optimized v1>
+   remark #25423: Condition at line 271 hoisted out of this loop
+   remark #15388: vectorization support: reference sizes has aligned access   [ PDADD.cpp(272,4) ]
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15301: PARTIAL LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 4 
+   remark #15477: vector loop cost: 1.250 
+   remark #15478: estimated potential speedup: 2.870 
+   remark #15479: lightweight vector operations: 5 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(268,2)
+<Remainder, Distributed chunk2, Predicate Optimized v1>
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(289,2)
+   remark #25408: memset generated
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at PDADD.cpp(289,2)
+      remark #15388: vectorization support: reference checkDiscords has aligned access   [ PDADD.cpp(291,3) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.180 
+      remark #15478: estimated potential speedup: 16.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+      remark #25015: Estimate of max trip count of loop=6
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(289,2)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=96
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(296,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at PDADD.cpp(299,3)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(299,3)
+      remark #15388: vectorization support: reference B has aligned access   [ PDADD.cpp(301,4) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 6 
+      remark #15477: vector loop cost: 0.180 
+      remark #15478: estimated potential speedup: 7.860 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(299,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(316,2)
+<Distributed chunk1>
+   remark #25426: Loop Distributed (2 way) 
+   remark #25401: memcopy(with guard) generated
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at PDADD.cpp(316,2)
+   <Multiversioned v2, Distributed chunk1>
+      remark #15388: vectorization support: reference Candidats has aligned access   [ PDADD.cpp(318,3) ]
+      remark #15388: vectorization support: reference Discords_l has aligned access   [ PDADD.cpp(318,3) ]
+      remark #15301: PARTIAL LOOP WAS VECTORIZED
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 7 
+      remark #15477: vector loop cost: 0.750 
+      remark #15478: estimated potential speedup: 9.170 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(316,2)
+   <Alternate Alignment Vectorized Loop, Multiversioned v2, Distributed chunk1>
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(316,2)
+   <Remainder, Multiversioned v2, Distributed chunk1>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(316,2)
+<Distributed chunk2>
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between u_and_q_c line 319 and u_and_q line 320
+   remark #15346: vector dependence: assumed ANTI dependence between u_and_q line 320 and u_and_q_c line 319
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(316,2)
+<Remainder, Distributed chunk2>
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(342,2)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at PDADD.cpp(344,3)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(344,3)
+      remark #15388: vectorization support: reference C has aligned access   [ PDADD.cpp(346,4) ]
+      remark #15389: vectorization support: reference t has unaligned access   [ PDADD.cpp(346,4) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15450: unmasked unaligned unit stride loads: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 13 
+      remark #15477: vector loop cost: 1.000 
+      remark #15478: estimated potential speedup: 10.800 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at PDADD.cpp(344,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(380,2)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at PDADD.cpp(384,4)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(434,3)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(461,2)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at PDADD.cpp(465,4)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(502,3)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at PDADD.cpp(506,4)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+      LOOP BEGIN at PDADD.cpp(509,5)
+         remark #15520: loop was not vectorized: loop with early exits cannot be vectorized unless it meets search loop idiom criteria
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at PDADD.cpp(536,4)
+   remark #15521: loop was not vectorized: explicitly compute the iteration count before executing the loop or try using canonical loop form
+LOOP END
+===========================================================================
