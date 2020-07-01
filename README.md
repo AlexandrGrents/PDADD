@@ -16,11 +16,9 @@
 1. [Алгоритм для нескольких узлов и нескольких ядер с обычным вычислением евклидова расстония](/PDADD-tornado) Реализован, протестирован✅<br>
 2. [Алгоритм для нескольких узлов и нескольких ядер с норомализованным вычислением евклидова расстония](/PDADD-tornado-ED_norm) Реализован, протестирован✅<br>
 
-
-#### Результаты вычислительных экспериментов[* ](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1):
-
 <hr>
 
+[**Результаты вычислительных экспериментов**](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1)
 
 [Подробные результаты экспериментов](https://docs.google.com/spreadsheets/d/1dJWZMRllznElxyI6ZTrmGiSUGYtYVOTOYgcRfZT-ucE/edit#gid=1566595512)
 
