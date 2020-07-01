@@ -17,8 +17,6 @@
 2. [Алгоритм для нескольких узлов и нескольких ядер с норомализованным вычислением евклидова расстония](/PDADD-tornado-ED_norm) Реализован, протестирован✅<br>
 
 
-#### [Отчеты компилятора](https://github.com/AlexandrGrents/PDADD/tree/master/icc%20compiler%20report)
-
 #### Результаты вычислительных экспериментов[* ](https://drive.google.com/open?id=1CLbsUrWlWkHpnRlcNeRbI6efHVsMuUj1):
 
 <hr>
