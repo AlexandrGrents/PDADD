@@ -5,7 +5,7 @@ void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, in
 	int NIL = -1;
 #pragma omp parallel num_threads(p)
 	{
-		//äàëåå ïàðàëëåëüíàÿ îáëàñòü
+		//начало параллельной области
 		bool isCandidate;
 		int iam = omp_get_thread_num();
 #pragma omp for
@@ -48,62 +48,10 @@ void findCandidats(	float **S, 	float r, int N, int n, int L, int p, int **I, in
 				Count[iam]++;
 			}
 		}
-		//êîíåö ïàðàëëåëüíîé îáëàñòè
+		//конец параллельной области
 	}
 }
 
-void findCandidats_norm(float *t, float **u_and_q,	float r, int N, int n, int L, int p, int **I, int *Insert, int *Bottom,	int *Count)
-{
-	int NIL = -1;
-#pragma omp parallel num_threads(p)
-	{
-		//äàëåå ïàðàëëåëüíàÿ îáëàñòü
-		bool isCandidate;
-		int iam = omp_get_thread_num();
-#pragma omp for
-		for (int i = 0; i < N; i++)
-		{
-			//if (i%6000 == 0) printf("%d\n", i);
-			isCandidate = true;
-			for (int j = 0; j < Bottom[iam]; j++)
-			{
-				if (I[iam][j] != NIL)
-				{
-					if (i - I[iam][j] >= n)
-					{
-						// if (ED_sqr(S[i], S[I[iam][j]], n) < r)
-						if (ED_norm(t+i, t+I[iam][j], n, u_and_q[0][i], u_and_q[0][I[iam][j]], 
-							u_and_q[1][i],u_and_q[1][I[iam][j]]) < r)
-						{
-							isCandidate = false;
-
-							I[iam][j] = NIL;
-							Insert[iam] = j;
-							Count[iam]--;
-
-						}
-
-					}
-
-				}
-			}
-			if (isCandidate)
-			{
-				if (I[iam][Insert[iam]] == NIL)
-				{
-					I[iam][Insert[iam]] = i;
-				}
-				else
-				{
-					I[iam][Bottom[iam]] = i;
-					Bottom[iam]++;
-				}
-				Count[iam]++;
-			}
-		}
-		//êîíåö ïàðàëëåëüíîé îáëàñòè
-	}
-}
 
 
 void getCandidats(int **I, int *Candidats, int *Bottom, int *Count, int L, int p, int *H)
@@ -139,16 +87,6 @@ void get_C(float **S, float **C, int *Candidats, int *H, int n)
 		for (int j = 0; j < n; j++)
 		{
 			C[i][j] = S[Candidats[i]][j];
-		}
-	}
-}
-void get_C_norm(float *t, float **u_and_q, float **C, int *Candidats, int *H, int n)
-{
-	for (int i=0; i<*H; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			C[i][j] = (t[Candidats[i] + j] - u_and_q[0][Candidats[i]])/u_and_q[1][Candidats[i]];
 		}
 	}
 }
