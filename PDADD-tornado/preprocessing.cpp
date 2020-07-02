@@ -31,18 +31,3 @@ void fill_S(float *t, float **S, int n, int N)
 	}
 }
 
-void fill_u_and_q(float *t, float **u_and_q, int n, int N)
-{
-	for (int i=0; i<N; i++)
-	{
-		u_and_q[0][i] = 0;
-		u_and_q[1][i] = 0; 
-		for (int j = i; j<i+n; j++)
-		{
-			u_and_q[0][i] += t[j];
-			u_and_q[1][i] += t[j]*t[j];
-		}
-		u_and_q[0][i] = u_and_q[0][i]/n;
-		u_and_q[1][i] = u_and_q[1][i]/n - u_and_q[0][i] * u_and_q[0][i];
-	}
-}
