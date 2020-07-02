@@ -13,11 +13,7 @@
 
 int main(int argc, char** argv)
 {
-	
-	MPI_Status stat;
-
-    //const char* inputFileName = argv[1];
-    //char inputFileName[] = "/datasets/random_walk/1m512/2/input0000.csv";
+    MPI_Status stat;
     char* inputFileName = argv[1];
     const int m = atoi(argv[2]);
     const int n = atoi(argv[3]);
@@ -76,20 +72,15 @@ int main(int argc, char** argv)
     fclose(file);
     if (rank == 0) printf("Rank 0, end read, time: %lf\n",MPI_Wtime());
     
-    /*if (rank == 0)
-        for (int i = 0; i < 10; i++)
-            printf("%f\n", t[i]);*/
+    
 
 	N = m_local - n + 1;
 	int L = (int)(dq * N + 1);
 	
 	
-	// float **u_and_q = (float**)_align_malloc(2*sizeof(float*));
-	// u_and_q[0] = (float*)_align_malloc(N*sizeof(float));
-	// u_and_q[1] = (float*)_align_malloc(N*sizeof(float));
 
 	if (rank == 0) printf("Rank 0, start fill u and q, time: %lf\n",MPI_Wtime());
-	// fill_u_and_q(t, u_and_q, n, N);
+	
 	
 	float **S = (float**)_align_malloc(N * sizeof(float*));
 	for (int i = 0; i < N; i++)
@@ -153,9 +144,9 @@ int main(int argc, char** argv)
     double time_ph1, time_ph2, tmp_time, start_time, start_time1;
     
     start_time = MPI_Wtime();
-
+//локальная фаза поиска
 	findCandidats(S, r, N, n, L, p, I, Insert, Bottom, Count);
-	// findCandidats_norm(t, u_and_q, r, N, n, L, p, I, Insert, Bottom, Count);
+	
 
 	if (rank == 0) printf("Rank 0, end 'findCandidats', time: %lf\n",MPI_Wtime());
 
@@ -181,9 +172,8 @@ int main(int argc, char** argv)
 		H += Count[k];
 	}
 	printf("BEFORE rank = %d C = %d\n", rank, H);
-    //----------------------------------------------------------------
-	//								NEW                 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//----------------------------------------------------------------
+	
+    //выделение памяти для вспомогательных структур данных
 
 	int* Candidats_l = (int*)_align_malloc(H * sizeof(int));
     float* C_l = (float*)_align_malloc(H * n * sizeof(float));
@@ -218,24 +208,16 @@ int main(int argc, char** argv)
 			C_l[i*n+j]= S[Candidats_l[i]][j];
 		}
 	}
-	// float * u_and_q_l = (float*)_align_malloc(2*H*sizeof(float));
-
-	// for (int i=0; i<H*2; i+=2)
-	// {
-	// 	u_and_q_l[i] 	= u_and_q[0][Candidats_l[i]];
-	// 	u_and_q_l[i+1] 	= u_and_q[1][Candidats_l[i]];
-	// }
+	
+	//локальная фаза отсеивания
 
 	start_time1 = MPI_Wtime();
 	refinement(S, B_l, C_l, Candidats_l, Discords_l, r, N, n, H, &D_l, p, 0);
-	// refinement_norm(t, u_and_q, u_and_q_l, B_l, C_l, 
-		// Candidats_l, Discords_l, r, N, n, H, &D_l, p, 0);
+
 	printf("REF 1!! rank = %d time = %lf\n", rank, MPI_Wtime()-start_time1);
 	H = D_l;
 
-	//----------------------------------------------------------------
-	//								NEW              !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//----------------------------------------------------------------
+	
     
     printf("AFTER rank = %d C = %d\n", rank, H);
     
@@ -265,10 +247,8 @@ int main(int argc, char** argv)
 	}
 
 	if (rank==0) printf("summar H = %d\n",sum);
-	//----------------------------------------------------------------
-	//								NEW
-	//----------------------------------------------------------------
-
+	
+	// выделение памяти для структур данных, нужных для обмена между узлами
 	double time_for_calloc_start, time_for_calloc;
 	time_for_calloc_start = MPI_Wtime();
 
@@ -298,7 +278,7 @@ int main(int argc, char** argv)
 
     time_for_calloc = MPI_Wtime() - time_for_calloc_start;
 
-	//----------------------------------------------------------------
+	
 
     if (rank == 0) printf("Rank 0, end callocs, time: %lf\n",MPI_Wtime());
 
@@ -308,27 +288,10 @@ int main(int argc, char** argv)
 	for (int j = 0; j<H; j++)
 	{
 		Candidats[i] = Discords_l[j];
-		// u_and_q_c[2*i] 		= u_and_q_l[2*Discords_l[j]];
-		// u_and_q_c[2*i + 1] 	= u_and_q_l[2*Discords_l[j] + 1];
+		
 		i++;
 	}
-	// for (int k = 0; k < p; k++)
-	// {
-	// 	for (int j = 0; j < Bottom[k]; j++)
-	// 	{
-	// 		if (I[k][j] != NIL)
-	// 		{
-	// 			Candidats[i] = I[k][j];
-	// 			i++;
-	// 		}
-	// 	}
-	// }
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-	//printf("rank = %d i = %d H = %d\n",rank, i, H );
-    
-    /*if (rank == 0)
-        for (int i = 0; i < H; i++)
-            printf("%d\n", Candidats[i]);*/
+	
 
 
 	for (int i = pre; i < pre+H; i++)
@@ -339,33 +302,11 @@ int main(int argc, char** argv)
 		}
 		Candidats[i] += add;
 	}
-    /*char candFileName[] = "candidats0000.txt";
     
-    len_name_file = strlen(candFileName);
-    candFileName[len_name_file - 8] = (char)('0' + rank / 1000);
-    candFileName[len_name_file - 7] = (char)('0' + (rank / 100) % 10);
-    candFileName[len_name_file - 6] = (char)('0' + (rank / 10) % 10);
-    candFileName[len_name_file - 5] = (char)('0' + rank % 10);
-    
-    file = fopen(candFileName, "w");
-    
-    for (int i = pre; i < pre+H; i++)
-    {
-        fprintf(file, "%d\n", Candidats[i]);
-    }
-    
-    fclose(file);*/
-     
-    /*if (rank == 0)
-    {
-        for (int i = 0; i < H; i++)
-        {
-            printf("%d\n", Candidats[i]);
-        }
-    }*/
 	if (rank == 0) printf("Rank 0, start Candidats-exchange, time: %lf\n",MPI_Wtime());
 	int pre_now = 0;
-
+	
+//обмен локальными диссонансами между узлами
 	for (int i = 0; i < size; i++)
 	{
 		if (i == rank)
@@ -376,7 +317,7 @@ int main(int argc, char** argv)
 				{
 					MPI_Send(Candidats + pre, H, MPI_INT, j, 3, MPI_COMM_WORLD);
 					MPI_Send(C + (pre * n), H * n, MPI_FLOAT, j, 4, MPI_COMM_WORLD);
-					// MPI_Send(u_and_q_c+ (pre*2), H*2, MPI_FLOAT, j, 34, MPI_COMM_WORLD);
+					
 				}
 			}
 		}
@@ -384,21 +325,13 @@ int main(int argc, char** argv)
 		{
 			MPI_Recv(Candidats + pre_now, sizes[i], MPI_INT, i, 3, MPI_COMM_WORLD, &stat);
 			MPI_Recv(C + (pre_now * n), sizes[i] * n, MPI_FLOAT, i, 4, MPI_COMM_WORLD, &stat);
-			// MPI_Recv(u_and_q_c + (pre_now * 2), sizes[i]*2, MPI_FLOAT, i, 34, MPI_COMM_WORLD, &stat);
+			
 		}
 		pre_now += sizes[i];
 	}
 	if (rank == 0) printf("Rank 0, end Candidats-exchange, time: %lf\n",MPI_Wtime());
 
-	/*if (rank == 0)
-	{
-		file = fopen("cands.txt","w");
-		for (int i = 0; i < sum; i++)
-		{
-			fprintf(file, "%d\n", Candidats[i]);
-		}
-		fclose(file);
-	}*/
+	
 	int D;
 	
 	int sum_H = sum;
@@ -410,8 +343,6 @@ int main(int argc, char** argv)
 	refinement(S, B, C, Candidats, Discords, r, N, n, sum_H, &D, p, add);
 
 
-	// refinement_norm(t, u_and_q, u_and_q_c, B, C, Candidats, Discords, r, N, n, sum_H, &D, p, add);
-	
 
 	if (rank == 0) printf("Rank 0, end 'refinement', time: %lf\n",MPI_Wtime());
 	time_ph2 = MPI_Wtime()-start_time1;
@@ -429,22 +360,6 @@ int main(int argc, char** argv)
 		}
 		printf("Time for phase 2: %.2lf\n",time_ph2);
 	}
-    /*char outputFileName[] = "discords0000.txt";
-    
-    len_name_file = strlen(outputFileName);
-    outputFileName[len_name_file - 8] = (char)('0' + rank / 1000);
-    outputFileName[len_name_file - 7] = (char)('0' + (rank / 100) % 10);
-    outputFileName[len_name_file - 6] = (char)('0' + (rank / 10) % 10);
-    outputFileName[len_name_file - 5] = (char)('0' + rank % 10);
-    
-    file = fopen(outputFileName, "w");
-    
-    for (int i = 0; i < D; i++)
-    {
-        fprintf(file, "%d\n", Discords[i]);
-    }
-    
-    fclose(file);*/
     
     
 	sizes[rank] = D;
@@ -474,17 +389,12 @@ int main(int argc, char** argv)
             pre += sizes[i];
 	}
 
-    //printf("rank = %d D = %d pre = %d\n", rank, D, pre);
     
 	int max = 0, tmp;
 	bool fl;
-    /*for (int i = 0; i < size; i++)
-        if (max < sizes[i])
-            max = sizes[i];
-     */
+    
 	printf("rank = %d, D = %d\n",rank, D);
-    // for (int j = 0; j<D; j++) printf("Rank = %d, num = %d, disc: %d\n", rank, j, Discords[j]);
-	//int* other_discords = (int*)_align_malloc(max * sizeof(int));
+    
 	if (rank == 0) printf("Rank 0, start Discords-exchange, time: %lf\n",MPI_Wtime());
 	if (rank != 0)
         MPI_Send(Discords, D, MPI_INT, 0, 7, MPI_COMM_WORLD);
@@ -508,7 +418,7 @@ int main(int argc, char** argv)
 				}
 				if (fl)
 				{
-					//printf("--> %d\n", Discords[i]);
+					
 					Discords[i] = Discords[D - 1];
                     checkDiscords[i] = checkDiscords[D - 1];
 					D--;
@@ -518,8 +428,7 @@ int main(int argc, char** argv)
 			}
 		}
         
-        /*for (int i = 0; i < D; i++)
-            printf("%d\n", checkDiscords[i]);*/
+      
         
         if (size > 1) 
         {
